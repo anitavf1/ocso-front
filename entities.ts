@@ -32,3 +32,15 @@ export interface Manager{
     user: any;
 
 }
+
+export interface Manager{
+    
+    managerId: string;
+    managerFullName: string;
+    managerSalary: number;
+    managerEmail: string;
+    managerPhoneNumber: string;
+    location: Location;
+    user: any;
+
+}
