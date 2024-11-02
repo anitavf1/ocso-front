@@ -1,5 +1,4 @@
-const ProviderPage = () =>{
-    return null;
-}
 
-export default ProviderPage;
+export default function ProviderPage(){
+    return "show all providers"
+}

@@ -29,7 +29,7 @@ export default async function LocationCard({
                 <p className="w-full">
                     Manager: 
                     <Link href={{pathname:`/dashboard/managers`}}>
-                    <b>{data.manager?.managerFullName}</b>
+                    <b className="underline">{data.manager?.managerFullName}</b>
                     </Link>
                     </p>
                 </CardBody>
