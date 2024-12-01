@@ -35,5 +35,6 @@ const LayoutProducts= async ({children}: {children: ReactNode}) => {
         </div>
     );
 
-    export default LayoutProducts;
 }
+
+export default LayoutProducts;

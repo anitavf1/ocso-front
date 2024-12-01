@@ -1,21 +1,34 @@
-import { LuPlus } from "react-icons/lu";
-import ModalGeneric from "../_components/ModalGeneric";
-import FormCreateManager from "./[id]/_components/FormCreateManager";
-import ManagerCards from "./_components/ManagerCards";
+import { API_URL } from "@/constants";
+import { Manager } from "@/entities";
+import { Card, CardBody } from "@nextui-org/react";
 import { authHeaders } from "@/helpers/authHeaders";
-import { Location } from "@/entities";
-const ManagersPage  = async () => {
-   const responseStores= await fetch(`${API_URL}/locations`, {
-      headers:{
-         ...authHeaders(),
-      }
-   })
-   const stores: Location [] = await responseStores.json()
-   return <ModalGeneric icon={<LuPlus size="20"/>}>
-      <FormCreateManager stores={stores}/>
-
-      
-   </ModalGeneric>
+export default async function CountManagersPage() {
+  const response = await fetch(`${API_URL}/managers`, {
+    headers: {
+      ...authHeaders(),
+    },
+    next: {
+      tags: ["dashboard:managers"],
+    },
+  });
+  const managers: Manager[] = await response.json();
+  const countNoStore = managers.filter(
+    (manager: Manager) => !manager.location,
+  ).length;
+  let max = 0
+  let salary = 0;
+  managers.forEach((manager: Manager) => {
+    if (manager.managerSalary > max) max = manager.managerSalary;
+    salary += manager.managerSalary
+  });
+  return (
+    <Card className="w-fit px-2 py-4 text-center">
+      <h1>
+        Hay {managers.length} manager{managers.length > 1 ? "s" : ""}{" "}
+      </h1>
+      <h1> Hay {countNoStore} sin tienda</h1>
+      <h1> El salario máximo es {max}</h1>
+      <h1> El salario promedio es {(salary/managers.length).toFixed(2)}</h1>
+    </Card>
+  );
 }
-
-export default ManagersPage;

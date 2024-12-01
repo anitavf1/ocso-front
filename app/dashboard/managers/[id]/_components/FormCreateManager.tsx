@@ -1,6 +1,7 @@
 import { Button, Input } from "@nextui-org/react";
 import SelectStore from "./SelectStore";
 import createManager from "@/actions/managers/create";
+import { Location } from "@/entities";
 
 export default function FormCreateManager({stores}:{stores: Location[]}){
     return(

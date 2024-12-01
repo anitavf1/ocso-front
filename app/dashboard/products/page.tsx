@@ -3,6 +3,7 @@ import { authHeaders } from "@/helpers/authHeaders";
 import { Button, Input } from "@nextui-org/react";
 import { LuDollarSign } from "react-icons/lu";
 import SelectProvider from "./_components/SelectProvider";
+import { API_URL } from "@/constants";
 const ProductsPage = async () =>{
     const responseProviders= await fetch(`${API_URL}/providers`, {
         headers: {
